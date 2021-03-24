@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -30,11 +31,11 @@ namespace UnlinkendIn
 
             ReadFile reader = new ReadFile();
 
-            int numVar = reader.getNum();
-            string[] list = reader.getVariables();
-            Dictionary<string, int> dictionary = reader.getDictionary();
+            int num = reader.GetNum();
+            string[] list = reader.GetVarList();
+            Dictionary<string, int> dictionary = reader.GetDictionary();
                 // gunakan dictionary[key] untuk mendapatkan value
-            bool[][] matrix = reader.getMatrix();
+            bool[,] matrix = reader.GetMatrix();
 
             int i = 0;
             foreach (var variable in list) {
@@ -51,33 +52,33 @@ namespace UnlinkendIn
         private string[] variables;       // list of variable
         private Dictionary<string, int> varIndices;   // dictionary of <variable, index>
         private int numVar;               // banyak variable
-        private bool[][] adjacencyMatrix; // adjacency matrix berukuran numVar x numVar
+        private bool[,] adjacencyMatrix; // adjacency matrix berukuran numVar x numVar
 
         public ReadFile() {
             textLines = File.ReadAllLines(@"./input.txt");
-            parseVariables();
-            constructGraph();
+            ParseVariables();
+            ConstructGraph();
         }
-        public int getNum() {
+        public int GetNum() {
             return numVar;
         }
-        public string[] getVariables() {
+        public string[] GetVarList() {
             return variables;
         }
-        public Dictionary<string, int> getDictionary() {
+        public Dictionary<string, int> GetDictionary() {
             return varIndices;
         }
-        public bool[][] getMatrix() {
+        public bool[,] GetMatrix() {
             return adjacencyMatrix;
         }
 
-        private void parseVariables() {
+        private void ParseVariables() {
             string[] temp = new string[50];
             int count = 0;
             foreach (var line in textLines) {             // baca per baris
                 string[] currentVars = line.Split(' ');     // array of string dari variabel di setiap baris
                 foreach (var word in currentVars) {
-                    if (!(isStringInArray(temp, word))) {     // jika variabel belum tercatat
+                    if (!(IsStringInArray(temp, word))) {     // jika variabel belum tercatat
                         temp[count] = word;
                         count++;
                     }
@@ -105,20 +106,20 @@ namespace UnlinkendIn
             }
         }
 
-        private void constructGraph() {
-            adjacencyMatrix = new bool[numVar][numVar];
+        private void ConstructGraph() {
+            adjacencyMatrix = new bool[numVar, numVar];
             int idx1, idx2;
             string[] words;
             foreach(var line in textLines) {
                 words = line.Split(' ');
                 idx1 = varIndices[words[0]];
                 idx2 = varIndices[words[1]];
-                adjacencyMatrix[idx1][idx2] = true;
-                adjacencyMatrix[idx2][idx1] = true;
+                adjacencyMatrix[idx1,idx2] = true;
+                adjacencyMatrix[idx2,idx1] = true;
             }
         }
 
-        public bool isStringInArray(String[] array, string word)  {
+        public bool IsStringInArray(String[] array, string word)  {
             return Array.Exists(array, e => e == word);
         }
     }
