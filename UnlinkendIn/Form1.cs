@@ -32,7 +32,7 @@ namespace UnlinkendIn
                 //string[] lines = File.ReadAllLines(browse.FileName);
                 List<string> lines = new List<string>();
                 lines = File.ReadAllLines(browse.FileName).ToList();
-
+                int N = Convert.ToInt16(lines[0]);
                 
                 foreach (String line in lines)
                 {
@@ -41,7 +41,9 @@ namespace UnlinkendIn
                 }
 
                 Console.ReadLine();
-
+            
+            // finding index
+            //int index = myList.FindIndex(a => a.Contains("Tennis"));
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -80,6 +82,11 @@ namespace UnlinkendIn
         }
 
         private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
