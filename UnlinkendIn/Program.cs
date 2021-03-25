@@ -123,59 +123,142 @@ namespace UnlinkendIn
             }
         }
 
-        public bool IsStringInArray(String[] array, string word)
+        public bool IsStringInArray(string[] array, string word)
         {
-            return Array.Exists(array, e => e == word);
+            return array.Contains(word);
         }
-    }
 
-    public class Friend_Recommendation
-    {
-        // atribut
-        private int[] jumlah_keterhubungan;     // Banyak nEff yang dimiliki 
-        private int[] mutual_friends;           // Matriks nama mutual friends untuk setiap final node
-
-
-        // mendapatkan array yang berisikan 
-        // find_friends merupakan indeks initial variabel yang ingin dicari 
-        public void process(int find_friends)
+        public bool IsIndexInArray(int[] array, int num)
         {
-            arr_dikunjungi[find_friends] = true;
+            return array.Contains(num);
+        }
 
-            for (int i = 0; i < length; i++)    // length = panjang baris efektif yang ingin dicari
+        public class Friend_Recommendation
+        {
+            // atribut
+            private int[] jumlah_keterhubungan;     // Banyak nEff yang dimiliki 
+            private int[] mutual_friends;           // Matriks nama mutual friends untuk setiap final node
+            private bool[] arr_dikunjungi;
+
+            // mendapatkan array yang berisikan 
+            // find_friends merupakan indeks initial variabel yang ingin dicari 
+            public void process(int find_friends)
             {
-                for (int j = 0; j < length; j++)// length = panjang baris efektif dari daun pertama
+                arr_dikunjungi[find_friends] = true;
+
+                for (int i = 0; i < ReadFile.GetNumVar(); i++)    // length = panjang baris efektif yang ingin dicari
                 {
-                    // node belum dikunjungi dan tidak berjarak satu dengan node initial
-                    // is_index_in_array mirip dengan IsStringInArray tapi bingung containernya bentuk nya seperti apa
-                    if (!(arr_dikunjungi[j] || is_index_in_array(arr_int[i], j)))
+                    for (int j = 0; j < ReadFile.GetNumVar(); j++)// length = panjang baris efektif dari daun pertama
                     {
-                        mutual_friends[j][jumlah_keterhubungan[j]] = arr_int[i];
-                        jumlah_keterhubungan[j]++;
+                        // node belum dikunjungi dan tidak berjarak satu dengan node initial
+                        // is_index_in_array mirip dengan IsStringInArray tapi bingung containernya bentuk nya seperti apa
+                        if (!(arr_dikunjungi[j] || IsIndexInArray(arr_int[i], j)))
+                        {
+                            mutual_friends[j][jumlah_keterhubungan[j]] = arr_int[i];
+                            jumlah_keterhubungan[j]++;
+                        }
+                    }
+                }
+            }
+
+            public void display()
+            {
+                // masih belum terurut dengan jumlah mutual friends terbesar
+                for (int i = 0; i < ReadFile.GetNumVar(); i++)
+                {
+                    if (jumlah_keterhubungan[i] > 0)
+                    {
+                        Console.WriteLine("Nama akun: " + arr_string[i]);
+                        Console.WriteLine(jumlah_keterhubungan[i] + " mutual friends: ");
+
+                        foreach (string item in mutual_friends[i])
+                        {
+                            Console.WriteLine(item);
+                        }
+                        Console.WriteLine("\n");
                     }
                 }
             }
         }
 
-        public void display()
+        public class ExplorerFriend_DFS
         {
-            // masih belum terurut dengan jumlah mutual friends terbesar
-            for (int i = 0; i < ReadFile.GetNum(); i++)
-            {
-                if (jumlah_keterhubungan[i] > 0)
-                {
-                    Console.WriteLine("Nama akun: " + arr_string[i]);
-                    Console.WriteLine(jumlah_keterhubungan[i] + " mutual friends: ");
+            //atribut
+            private bool connected; // mengecek apakah kedua simpul terhubung
+            private int awal; // indeks simpul awal
+            private int akhir; // indeks simpul akhir
+            private List<int> jalur; // jalur yang menghubungi
+            private bool[] arr_dikunjungi; // simpul yang sudah dikunjungi
+            private int n; // banyak simpul
+            private bool[,] matriks; // matriks keterhubungan
 
-                    foreach (string item in mutual_friends[i])
+            public ExplorerFriend_DFS(int awal, int akhir, bool[,] matriks, int n)
+            {
+                this.awal = awal;
+                this.akhir = akhir;
+                this.connected = false;
+                this.jalur = new List<int>();
+                this.arr_dikunjungi = new bool[n];
+                this.matriks = new bool[n, n];
+
+                for (int i=0; i<n; i++)
+                {
+                    for (int j=0; j<n; j++)
                     {
-                        Console.WriteLine(item);
+                        this.matriks[i, j] = matriks[i, j];
                     }
-                    Console.WriteLine("\n");
+                }
+
+                this.n = n;
+
+                for (int i=0; i<n; i++)
+                {
+                    arr_dikunjungi[i] = false;
+                }
+            }
+
+            public void DFSUtil(int curr)
+            {
+                jalur.Add(curr);
+                arr_dikunjungi[curr] = true;
+                for (int j=1; j<n; j++)
+                {
+                    if (matriks[curr, j] = true)
+                    {
+                        if (!(arr_dikunjungi[j]))
+                        {
+                            if (j == akhir)
+                            {
+                                this.connected = true;
+                                break;
+                            }
+                            else
+                            {
+                                DFSUtil(j);
+                            }
+                        }
+                    }
+                }
+            }
+
+            public void PrintDFSUtil()
+            {
+                if (connected)
+                {
+                    foreach (int j in jalur)
+                    {
+                        Console.WriteLine(j);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Tidak ada koneksi");
                 }
             }
         }
     }
+
+
 
 
 }
