@@ -10,15 +10,14 @@ Penerapan algoritma DFS dan BFS pada permasalahan ini adalah dengan mengunjungi 
 * [Teknologi](#teknologi)
 * [Persiapan program](#persiapan-program)
 * [Cara menggunakan program](#cara-menggunakan-program)
-* [Status](#status)
 * [Kontak](#kontak)
 
 ## Info General
 Tujuan dari pembuatan proyek ini adalah untuk memenuhi tugas besar II mata kuliah IF2211 Strategi Algoritma semester 4 Teknik Informatika Institut Teknologi Bandung tahun ajaran 2020/2021.
 
 ## Teknologi
-C#
-MSAGL
+* C#
+* MSAGL
 
 ## Persiapan program
 1. Download C# sesuai OS masing-masing. Kami menyarankan untuk mendownload ....
@@ -49,7 +48,7 @@ git clone "https://github.com/benidictusgalihmp/UnlinkendIn"
 
 ## Kontak
 Dibuat oleh:
-Rexy Gamaliel Rumahorbo - 13519010@std.stei.itb.ac.id
-Arjuna Marcelino - 13519021@std.stei.itb.ac.id
-Benidictus Galih Mahar Putra - 13519159@std.stei.itb.ac.id
+- Rexy Gamaliel Rumahorbo - 13519010@std.stei.itb.ac.id
+- Arjuna Marcelino - 13519021@std.stei.itb.ac.id
+- Benidictus Galih Mahar Putra - 13519159@std.stei.itb.ac.id
 Teknik Informatika ITB
