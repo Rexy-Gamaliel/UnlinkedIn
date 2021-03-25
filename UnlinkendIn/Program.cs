@@ -47,7 +47,7 @@ namespace UnlinkendIn
             ConstructGraph();
         }
 
-        public int GetNumVar()
+        public int GetNum()
         {
             return numVar;
         }
@@ -188,7 +188,7 @@ namespace UnlinkendIn
         private string dNode;
         private bool[] visited;
 
-        BFS (string _sNode, string _dNode, int _numVar, string[] _varList, Dictionary<string, int> _varDictionary, bool [,] _matrix)
+        public BFS (string _sNode, string _dNode, int _numVar, string[] _varList, Dictionary<string, int> _varDictionary, bool [,] _matrix)
         {
             this.numVar = _numVar;
             this.varList = _varList;
@@ -204,34 +204,35 @@ namespace UnlinkendIn
             }
         }
 
-        public Queue<string> ConstructPath()
+        public Stack<string> ConstructPath()
         {
-            Queue<string> path = new Queue<string>();
+            Stack<string> path = new Stack<string>();
 
             if (sNode.Equals(dNode))
             {
-                path.Enqueue(sNode);
+                path.Push(sNode);
                 return path;
             }
 
             Dictionary<string, string> precNode = new Dictionary<string, string>();
-                // mencatat node sebelumnya dari sebuah node
+            // mencatat node sebelumnya dari sebuah node
             int currentIdx = getIdx(sNode);
             int dIdx = getIdx(dNode);
-            bool found = false;
 
             visited[currentIdx] = true;
             varQueue.Enqueue(sNode);
+            // int it = 1;
 
-            while (varQueue.Any())
+            while (varQueue.Count > 0)
             {
+                // Console.Out.WriteLine("Iteration " + it + " : ");
                 // indeks node yang sedang dievaluasi
-                currentIdx  = getIdx(varQueue.Dequeue());
+                currentIdx = getIdx(varQueue.Dequeue());
+                // Console.Out.WriteLine("Current Node: " + getName(currentIdx));
 
                 // jika node tujuan ditemukan
                 if (currentIdx == dIdx)
                 {
-                    precNode.Add(dNode, getName(currentIdx));
                     break;
                 }
 
@@ -245,18 +246,34 @@ namespace UnlinkendIn
                         precNode.Add(getName(othersIdx), getName(currentIdx));
                     }
                 }
+                // it++;
             }
 
             // construct path
             // testing
-            foreach (KeyValuePair<string, string> item in precNode)
+            // foreach (KeyValuePair<string, string> item in precNode)
+            // {
+            //     Console.Out.WriteLine(item.Key + " : " + item.Value);
+            // }
+            //
+
+            // backtracking
+            if (precNode.ContainsKey(dNode))
             {
-                Console.Out.WriteLine(item.Key + " : " + item.Value);
+                string tempStr = dNode;
+                path.Push(tempStr);
+                while (tempStr != sNode)
+                {
+                    tempStr = precNode[tempStr];
+                    path.Push(tempStr);
+                }
+                return path;
             }
-
-
-
-            return path;
+            else
+            {
+                path.Push("NULL");
+                return path;
+            }
         }
 
         private int getIdx(string node)

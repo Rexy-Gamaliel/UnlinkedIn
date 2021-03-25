@@ -44,7 +44,7 @@ namespace UnlinkendIn
                 ///Console.ReadLine();
                 ReadFile reader = new ReadFile(browse.FileName);
 
-                int num = reader.GetNumVar();
+                int num = reader.GetNum();
                 list = reader.GetVarList();
                 Dictionary<string, int> dictionary = reader.GetDictionary();
                 // gunakan dictionary[key] untuk mendapatkan value
