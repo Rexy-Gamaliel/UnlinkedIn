@@ -123,4 +123,53 @@ namespace UnlinkendIn
             return Array.Exists(array, e => e == word);
         }
     }
+
+    public class Friend_Recommendation
+    {
+        // atribut
+        private int[] jumlah_keterhubungan;     // Banyak nEff yang dimiliki 
+        private int[] mutual_friends;           // Matriks nama mutual friends untuk setiap final node
+
+
+        // mendapatkan array yang berisikan 
+        // find_friends merupakan indeks initial variabel yang ingin dicari 
+        public void process(int find_friends)
+        {
+            arr_dikunjungi[find_friends] = true;
+
+            for (int i = 0; i < length; i++)    // length = panjang baris efektif yang ingin dicari
+            {
+                for (int j = 0; j < length; j++)// length = panjang baris efektif dari daun pertama
+                {
+                    // node belum dikunjungi dan tidak berjarak satu dengan node initial
+                    // is_index_in_array mirip dengan IsStringInArray tapi bingung containernya bentuk nya seperti apa
+                    if (!(arr_dikunjungi[j] || is_index_in_array(arr_int[i], j)))
+                    {
+                        mutual_friends[j][jumlah_keterhubungan[j]] = arr_int[i];
+                        jumlah_keterhubungan[j]++;
+                    }
+                }
+            }
+        }
+
+        public void display()
+        {
+            // masih belum terurut dengan jumlah mutual friends terbesar
+            for (int i = 0; i < ReadFile.GetNum(); i++)
+            {
+                if (jumlah_keterhubungan[i] > 0)
+                {
+                    Console.WriteLine("Nama akun: " + arr_string[i]);
+                    Console.WriteLine(jumlah_keterhubungan[i] + " mutual friends: ");
+
+                    foreach (string item in mutual_friends[i])
+                    {
+                        Console.WriteLine(item);
+                    }
+                    Console.WriteLine("\n");
+                }
+            }
+        }
+    }
+
 }
