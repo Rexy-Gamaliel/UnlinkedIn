@@ -239,15 +239,26 @@ namespace UnlinkendIn
                     break;
                 }
 
+                
+                int j = 0;
                 // mengevaluasi setiap node yang bertetanggan dengan currentNode
-                for (int othersIdx = 0; othersIdx < numVar; othersIdx++)
+                while (j < numVar)
                 {
-                    if (matriks[currentIdx, othersIdx] && !visited[othersIdx])
+                    int othersIdx = 0;
+                    bool found = false;
+                    while (othersIdx < numVar && !found)
                     {
-                        visited[othersIdx] = true;
-                        varStack.Push(getName(othersIdx));
-                        precNode.Add(getName(othersIdx), getName(currentIdx));
+                        if (matriks[currentIdx, othersIdx] && !visited[othersIdx])
+                        {
+                            visited[othersIdx] = true;
+                            varStack.Push(getName(othersIdx));
+                            precNode.Add(getName(othersIdx), getName(currentIdx));
+                            currentIdx = othersIdx;
+                            found = true;
+                        }
+                        othersIdx++;
                     }
+                    j++;
                 }
             }
 
