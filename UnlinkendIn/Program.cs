@@ -129,7 +129,7 @@ namespace UnlinkendIn
         }
     }
 
-    public class Friend_Recommendation
+    /*public class Friend_Recommendation
     {
         // atribut
         private int[] jumlah_keterhubungan;     // Banyak nEff yang dimiliki 
@@ -180,83 +180,104 @@ namespace UnlinkendIn
             }
         }
     }
-
-    public class ExplorerFriend_DFS
+    */
+    public class DFS
     {
         //atribut
-        private bool connected; // mengecek apakah kedua simpul terhubung
-        private int awal; // indeks simpul awal
-        private int akhir; // indeks simpul akhir
-        private List<int> jalur; // jalur yang menghubungi
-        private bool[] arr_dikunjungi; // simpul yang sudah dikunjungi
-        private int n; // banyak simpul
+        private int numVar; // banyak simpul
+        private string[] varList; // list simpul
+        private Dictionary<string, int> varDictionary;
+        private Stack<string> varStack;
         private bool[,] matriks; // matriks keterhubungan
+        private string awal; // indeks simpul awal
+        private string akhir; // indeks simpul akhir
+        private bool[] visited;        
+        
 
-        public ExplorerFriend_DFS(int awal, int akhir, bool[,] matriks, int n)
+        public DFS(string awal, string akhir, int numVar, string[] varList, Dictionary<string, int> varDictionary, bool[,] matriks)
         {
             this.awal = awal;
             this.akhir = akhir;
-            this.connected = false;
-            this.jalur = new List<int>();
-            this.arr_dikunjungi = new bool[n];
-            this.matriks = new bool[n, n];
-
-            for (int i = 0; i < n; i++)
+            this.numVar = numVar;
+            this.varList = varList;
+            this.varDictionary = varDictionary;
+            this.varStack = new Stack<string>();
+            this.matriks = matriks;
+            this.visited = new bool[numVar];
+            for (int i = 0; i < numVar; i++)
             {
-                for (int j = 0; j < n; j++)
-                {
-                    this.matriks[i, j] = matriks[i, j];
-                }
-            }
-
-            this.n = n;
-
-            for (int i = 0; i < n; i++)
-            {
-                arr_dikunjungi[i] = false;
+                visited[i] = false;
             }
         }
 
-        public void DFSUtil(int curr)
+        public Stack<string> ConstructPath()
         {
-            jalur.Add(curr);
-            arr_dikunjungi[curr] = true;
-            for (int j = 1; j < n; j++)
+            Stack<string> path = new Stack<string>();
+
+            if (awal.Equals(akhir))
             {
-                if (matriks[curr, j] == true)
+                path.Push(awal);
+                return path;
+            }
+
+            Dictionary<string, string> precNode = new Dictionary<string, string>();
+            // mencatat node sebelumnya dari sebuah node
+            int currentIdx = getIdx(awal);
+            int dIdx = getIdx(akhir);
+
+            visited[currentIdx] = true;
+            varStack.Push(awal);
+
+            while (varStack.Count > 0)
+            {
+                // indeks node yang sedang dievaluasi
+                currentIdx = getIdx(varStack.Pop());
+
+                // jika node tujuan ditemukan
+                if (currentIdx == dIdx)
                 {
-                    if (!(arr_dikunjungi[j]))
+                    break;
+                }
+
+                // mengevaluasi setiap node yang bertetanggan dengan currentNode
+                for (int othersIdx = 0; othersIdx < numVar; othersIdx++)
+                {
+                    if (matriks[currentIdx, othersIdx] && !visited[othersIdx])
                     {
-                        if (j == akhir)
-                        {
-                            this.connected = true;
-                            break;
-                        }
-                        else
-                        {
-                            DFSUtil(j);
-                        }
+                        visited[othersIdx] = true;
+                        varStack.Push(getName(othersIdx));
+                        precNode.Add(getName(othersIdx), getName(currentIdx));
                     }
                 }
             }
-        }
 
-        public void PrintDFSUtil()
-        {
-            if (connected)
+            if (precNode.ContainsKey(akhir))
             {
-                foreach (int j in jalur)
+                string tempStr = akhir;
+                path.Push(tempStr);
+                while (tempStr != awal)
                 {
-                    Console.WriteLine(j);
+                    tempStr = precNode[tempStr];
+                    path.Push(tempStr);
                 }
+                return path;
             }
             else
             {
-                Console.WriteLine("Tidak ada koneksi");
+                return path;
             }
         }
-    }
+        private int getIdx(string node)
+        {
+            return varDictionary[node];
+        }
+        private string getName(int idx)
+        {
+            return varList[idx];
+        }
 
+    }
+    
     public class BFS
     {
         private int numVar;
@@ -351,7 +372,7 @@ namespace UnlinkendIn
             }
             else
             {
-                path.Push("NULL");
+                //path.Push("NULL");
                 return path;
             }
         }
