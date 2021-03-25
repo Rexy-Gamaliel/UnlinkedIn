@@ -98,7 +98,7 @@ namespace UnlinkendIn
                 string word = variables[i];
                 try
                 {
-                    varIndices.Add(word, count);
+                    varIndices.Add(word, i);
                 }
                 catch (ArgumentException)
                 {
