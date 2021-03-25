@@ -34,7 +34,7 @@ namespace UnlinkendIn
                 label10.Text = System.IO.Path.GetFileName(browse.FileName);
                 ReadFile reader = new ReadFile(browse.FileName);
 
-                int num = reader.GetNum();
+                int num = reader.GetNumVar();
                 list = reader.GetVarList();
                 Dictionary<string, int> dictionary = reader.GetDictionary();
                 bool[,] matrix = reader.GetMatrix();

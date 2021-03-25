@@ -33,7 +33,7 @@ namespace UnlinkendIn
     public class ReadFile
     {
         // Attributes
-        
+
         private string[] textLines;       // hasil parsing .txt per line
         private string[] variables;       // list of variable
         private Dictionary<string, int> varIndices;   // dictionary of <variable, index>
@@ -47,7 +47,7 @@ namespace UnlinkendIn
             ConstructGraph();
         }
 
-        public int GetNum()
+        public int GetNumVar()
         {
             return numVar;
         }
@@ -69,7 +69,7 @@ namespace UnlinkendIn
             string[] temp = new string[50];
             int count = 0;
             int N = Convert.ToInt16(textLines[0]);
-            for (int i=1; i<=N; i++)
+            for (int i = 1; i <= N; i++)
             {
                 string[] currentVars = textLines[i].Split(' ');     // array of string dari variabel di setiap baris
                 foreach (var word in currentVars)
@@ -109,11 +109,11 @@ namespace UnlinkendIn
 
         private void ConstructGraph()
         {
-            adjacencyMatrix = new bool[numVar+1, numVar+1];
+            adjacencyMatrix = new bool[numVar + 1, numVar + 1];
             int idx1, idx2;
             string[] words;
             int N = Convert.ToInt16(textLines[0]);
-            for (int i=1; i<=N; i++)
+            for (int i = 1; i <= N; i++)
             {
                 words = textLines[i].Split(' ');
                 idx1 = varIndices[words[0]];
@@ -123,9 +123,9 @@ namespace UnlinkendIn
             }
         }
 
-        public bool IsStringInArray(String[] array, string word)
+        public bool IsStringInArray(string[] array, string word)
         {
-            return Array.Exists(array, e => e == word);
+            return array.Contains(word);
         }
     }
 
@@ -134,7 +134,7 @@ namespace UnlinkendIn
         // atribut
         private int[] jumlah_keterhubungan;     // Banyak nEff yang dimiliki 
         private int[] mutual_friends;           // Matriks nama mutual friends untuk setiap final node
-
+        private bool[] arr_dikunjungi;
 
         // mendapatkan array yang berisikan 
         // find_friends merupakan indeks initial variabel yang ingin dicari 
@@ -142,13 +142,13 @@ namespace UnlinkendIn
         {
             arr_dikunjungi[find_friends] = true;
 
-            for (int i = 0; i < length; i++)    // length = panjang baris efektif yang ingin dicari
+            for (int i = 0; i < ReadFile.GetNumVar(); i++)    // length = panjang baris efektif yang ingin dicari
             {
-                for (int j = 0; j < length; j++)// length = panjang baris efektif dari daun pertama
+                for (int j = 0; j < ReadFile.GetNumVar(); j++)// length = panjang baris efektif dari daun pertama
                 {
                     // node belum dikunjungi dan tidak berjarak satu dengan node initial
                     // is_index_in_array mirip dengan IsStringInArray tapi bingung containernya bentuk nya seperti apa
-                    if (!(arr_dikunjungi[j] || is_index_in_array(arr_int[i], j)))
+                    if (!(arr_dikunjungi[j] || IsIndexInArray(arr_int[i], j)))
                     {
                         mutual_friends[j][jumlah_keterhubungan[j]] = arr_int[i];
                         jumlah_keterhubungan[j]++;
@@ -156,11 +156,15 @@ namespace UnlinkendIn
                 }
             }
         }
+        public bool IsIndexInArray(int[] array, int num)
+        {
+            return array.Contains(num);
+        }
 
         public void display()
         {
             // masih belum terurut dengan jumlah mutual friends terbesar
-            for (int i = 0; i < ReadFile.GetNum(); i++)
+            for (int i = 0; i < ReadFile.GetNumVar(); i++)
             {
                 if (jumlah_keterhubungan[i] > 0)
                 {
@@ -177,6 +181,82 @@ namespace UnlinkendIn
         }
     }
 
+    public class ExplorerFriend_DFS
+    {
+        //atribut
+        private bool connected; // mengecek apakah kedua simpul terhubung
+        private int awal; // indeks simpul awal
+        private int akhir; // indeks simpul akhir
+        private List<int> jalur; // jalur yang menghubungi
+        private bool[] arr_dikunjungi; // simpul yang sudah dikunjungi
+        private int n; // banyak simpul
+        private bool[,] matriks; // matriks keterhubungan
+
+        public ExplorerFriend_DFS(int awal, int akhir, bool[,] matriks, int n)
+        {
+            this.awal = awal;
+            this.akhir = akhir;
+            this.connected = false;
+            this.jalur = new List<int>();
+            this.arr_dikunjungi = new bool[n];
+            this.matriks = new bool[n, n];
+
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    this.matriks[i, j] = matriks[i, j];
+                }
+            }
+
+            this.n = n;
+
+            for (int i = 0; i < n; i++)
+            {
+                arr_dikunjungi[i] = false;
+            }
+        }
+
+        public void DFSUtil(int curr)
+        {
+            jalur.Add(curr);
+            arr_dikunjungi[curr] = true;
+            for (int j = 1; j < n; j++)
+            {
+                if (matriks[curr, j] == true)
+                {
+                    if (!(arr_dikunjungi[j]))
+                    {
+                        if (j == akhir)
+                        {
+                            this.connected = true;
+                            break;
+                        }
+                        else
+                        {
+                            DFSUtil(j);
+                        }
+                    }
+                }
+            }
+        }
+
+        public void PrintDFSUtil()
+        {
+            if (connected)
+            {
+                foreach (int j in jalur)
+                {
+                    Console.WriteLine(j);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Tidak ada koneksi");
+            }
+        }
+    }
+
     public class BFS
     {
         private int numVar;
@@ -188,7 +268,7 @@ namespace UnlinkendIn
         private string dNode;
         private bool[] visited;
 
-        public BFS (string _sNode, string _dNode, int _numVar, string[] _varList, Dictionary<string, int> _varDictionary, bool [,] _matrix)
+        public BFS(string _sNode, string _dNode, int _numVar, string[] _varList, Dictionary<string, int> _varDictionary, bool[,] _matrix)
         {
             this.numVar = _numVar;
             this.varList = _varList;
@@ -285,4 +365,5 @@ namespace UnlinkendIn
             return varList[idx];
         }
     }
+
 }
