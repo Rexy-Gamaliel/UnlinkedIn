@@ -98,7 +98,7 @@ namespace UnlinkendIn
                 string word = variables[i];
                 try
                 {
-                    varIndices.Add(word, count);
+                    varIndices.Add(word, i);
                 }
                 catch (ArgumentException)
                 {
@@ -133,7 +133,7 @@ namespace UnlinkendIn
             return array.Contains(num);
         }
 
-        public class Friend_Recommendation
+        /*public class Friend_Recommendation
         {
             // atribut
             private int[] jumlah_keterhubungan;     // Banyak nEff yang dimiliki 
@@ -255,7 +255,7 @@ namespace UnlinkendIn
                     Console.WriteLine("Tidak ada koneksi");
                 }
             }
-        }
+        }*/
     }
 
 
