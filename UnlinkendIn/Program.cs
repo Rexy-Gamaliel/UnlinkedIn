@@ -27,58 +27,55 @@ namespace UnlinkendIn
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-
-
-            ReadFile reader = new ReadFile();
-
-            int num = reader.GetNum();
-            string[] list = reader.GetVarList();
-            Dictionary<string, int> dictionary = reader.GetDictionary();
-                // gunakan dictionary[key] untuk mendapatkan value
-            bool[,] matrix = reader.GetMatrix();
-
-            int i = 0;
-            foreach (var variable in list) {
-                Console.WriteLine("Index of {0} in list: {1}", variable, i);
-                Console.WriteLine("Index of {0} in dict: {1}", variable, dictionary[variable]);
-                i++;
-            }
         }
     }
 
-    public class ReadFile {
+    public class ReadFile
+    {
         // Attributes
+        
         private string[] textLines;       // hasil parsing .txt per line
         private string[] variables;       // list of variable
         private Dictionary<string, int> varIndices;   // dictionary of <variable, index>
         private int numVar;               // banyak variable
         private bool[,] adjacencyMatrix; // adjacency matrix berukuran numVar x numVar
 
-        public ReadFile() {
-            textLines = File.ReadAllLines(@"./input.txt");
+        public ReadFile(string file)
+        {
+            textLines = File.ReadAllLines(file);
             ParseVariables();
             ConstructGraph();
         }
-        public int GetNum() {
+
+        public int GetNumVar()
+        {
             return numVar;
         }
-        public string[] GetVarList() {
+        public string[] GetVarList()
+        {
             return variables;
         }
-        public Dictionary<string, int> GetDictionary() {
+        public Dictionary<string, int> GetDictionary()
+        {
             return varIndices;
         }
-        public bool[,] GetMatrix() {
+        public bool[,] GetMatrix()
+        {
             return adjacencyMatrix;
         }
 
-        private void ParseVariables() {
+        private void ParseVariables()
+        {
             string[] temp = new string[50];
             int count = 0;
-            foreach (var line in textLines) {             // baca per baris
-                string[] currentVars = line.Split(' ');     // array of string dari variabel di setiap baris
-                foreach (var word in currentVars) {
-                    if (!(IsStringInArray(temp, word))) {     // jika variabel belum tercatat
+            int N = Convert.ToInt16(textLines[0]);
+            for (int i=1; i<=N; i++)
+            {
+                string[] currentVars = textLines[i].Split(' ');     // array of string dari variabel di setiap baris
+                foreach (var word in currentVars)
+                {
+                    if (!(IsStringInArray(temp, word)))
+                    {     // jika variabel belum tercatat
                         temp[count] = word;
                         count++;
                     }
@@ -89,37 +86,45 @@ namespace UnlinkendIn
             // selesai mengakuisisi setiap variabel
             Console.WriteLine("> Test 1");
             variables = new string[numVar];
-            for (int i = 0; i < numVar; i++) {
+            for (int i = 0; i < numVar; i++)
+            {
                 variables[i] = temp[i];
             }
             Array.Sort(variables);
 
             varIndices = new Dictionary<string, int>();
-            for (int i = 0; i < numVar; i++) {
+            for (int i = 0; i < numVar; i++)
+            {
                 string word = variables[i];
-                try {
+                try
+                {
                     varIndices.Add(word, count);
                 }
-                catch (ArgumentException) {
+                catch (ArgumentException)
+                {
                     // no handling needed
                 }
             }
         }
 
-        private void ConstructGraph() {
-            adjacencyMatrix = new bool[numVar, numVar];
+        private void ConstructGraph()
+        {
+            adjacencyMatrix = new bool[numVar+1, numVar+1];
             int idx1, idx2;
             string[] words;
-            foreach(var line in textLines) {
-                words = line.Split(' ');
+            int N = Convert.ToInt16(textLines[0]);
+            for (int i=1; i<=N; i++)
+            {
+                words = textLines[i].Split(' ');
                 idx1 = varIndices[words[0]];
                 idx2 = varIndices[words[1]];
-                adjacencyMatrix[idx1,idx2] = true;
-                adjacencyMatrix[idx2,idx1] = true;
+                adjacencyMatrix[idx1, idx2] = true;
+                adjacencyMatrix[idx2, idx1] = true;
             }
         }
 
-        public bool IsStringInArray(String[] array, string word)  {
+        public bool IsStringInArray(String[] array, string word)
+        {
             return Array.Exists(array, e => e == word);
         }
     }
@@ -171,5 +176,6 @@ namespace UnlinkendIn
             }
         }
     }
+
 
 }
