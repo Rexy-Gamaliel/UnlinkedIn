@@ -20,18 +20,16 @@ Tujuan dari pembuatan proyek ini adalah untuk memenuhi tugas besar II mata kulia
 * MSAGL
 
 ## Persiapan program
-1. Download C# sesuai OS masing-masing. Kami menyarankan untuk mendownload ....
+1. Download C# sesuai OS masing-masing. 
 2. Salin link https://github.com/benidictusgalihmp/UnlinkendIn
 3. Pilih direktori yang ingin Anda jadikan sebagai tempat programnya dengan perintah **cd**  *nama-direktori-anda*/
 4. Klon link *git repository* dengan perintah berikut
 ```bash
 git clone "https://github.com/benidictusgalihmp/UnlinkendIn"
 ``` 
-5. Buka folder *repository* tersebut dan persiapkan file yang berisi soal yang ingin diselesaikan
-6. Buka ..
-7. Buka ..
-8. Jalankan program ...
-9. Program *People You May Know* dapat dijalankan
+5. Buka folder *repository* tersebut dan persiapkan file yang berisi soal yang ingin diselesaikan dan masukkan pada folder test
+6. Buka folder **bin** kemudian pilih file yang bernama **UnlinkendIn.exe**
+7. Program *People You May Know* dapat dijalankan
 
 ## Cara Menggunakan Program
 1. Pastikan sudah tersedia file teks yang sudah mengikut format yang sudah ditentukan.
@@ -51,4 +49,4 @@ Dibuat oleh:
 - Rexy Gamaliel Rumahorbo - 13519010@std.stei.itb.ac.id
 - Arjuna Marcelino - 13519021@std.stei.itb.ac.id
 - Benidictus Galih Mahar Putra - 13519159@std.stei.itb.ac.id
-Teknik Informatika ITB
+\Teknik Informatika ITB
