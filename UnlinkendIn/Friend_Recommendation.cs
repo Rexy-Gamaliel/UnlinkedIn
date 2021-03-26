@@ -24,13 +24,12 @@ namespace UnlinkendIn
         {
 
             this.id = id;
-            this.id_main = getIdx(id);
             this.total_var = total_var;
             this.list_var = list_var;
             this.graph_link = graph_link;
             this.varDictionary = dictionary_f;
             this.antrian = new Queue<string>();
-
+            this.id_main = getIdx(id);
             /* assign array link_visited dengan false */
             this.link_visited = new bool[this.total_var];
             for (int i = 0; i < total_var; i++)
@@ -97,7 +96,6 @@ namespace UnlinkendIn
                         {
                             /* assign nilai string ke dalam matriks mutual friends */
                             this.mutual_friends[i, total_linked[i]] = this.antrian.Peek();
-                            this.link_visited[i] = true;            /* assign node sudah dikunjungi  */
                             this.total_linked[i]++;                 /* nEff baris matriks bertambah  */
                         }
                     }
