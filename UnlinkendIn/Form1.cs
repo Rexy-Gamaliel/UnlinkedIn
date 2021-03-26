@@ -145,7 +145,26 @@ namespace UnlinkendIn
             // menampilkan output fitur rekomendasi teman
             if (comboBoxFitur.SelectedItem.ToString()== "Friend Recommendation")
             {
-                string akun = comboBoxAkunAwal.SelectedItem.ToString();
+                string akun = comboBoxAkunAwal.Text;
+
+                Friend_Recommendation acc = new Friend_Recommendation(akun, numVar, list, dictionary, matrix);
+                acc.process();
+                
+                /*// masih belum terurut dengan jumlah mutual friends terbesar
+                for (int i = 0; i < numVar; i++)
+                {
+                    if (acc. > 0)
+                    {
+                        Console.WriteLine("Nama akun: " + this.list_var[i]);
+                        Console.WriteLine(this.total_linked[i] + " mutual friends: ");
+
+                        for (int j = 0; j < this.total_linked[i]; j++)
+                        {
+                            Console.WriteLine(this.mutual_friends[i]);
+                        }
+                        Console.WriteLine("\n");
+                    }
+                }*/
             }
 
             // menampilkan output fitur eplorer friends
