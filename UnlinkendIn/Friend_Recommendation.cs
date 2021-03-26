@@ -23,11 +23,11 @@ namespace UnlinkendIn
         {
 
             this.id = id;
+            this.varDictionary = dictionary_f;
             this.id_main = getIdx(id);
             this.total_var = total_var;
             this.list_var = list_var;
             this.graph_link = graph_link;
-            this.varDictionary = dictionary_f;
 
             /* assign array link_visited dengan false */
             this.link_visited = new bool[this.total_var];
