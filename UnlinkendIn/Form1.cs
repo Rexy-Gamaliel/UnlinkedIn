@@ -148,7 +148,7 @@ namespace UnlinkendIn
                 string akun = comboBoxAkunAwal.SelectedItem.ToString();
                 Friend_Recommendation acc = new Friend_Recommendation(akun, numVar, list, dictionary, matrix);
                 acc.process();
-                string[] mutual = acc.get_mutual_friends();
+                string[,] mutual = acc.get_mutual_friends();
                 int[] link = acc.get_total_linked();
                 // masih belum terurut dengan jumlah mutual friends terbesar
                 textBox2.Text += "Daftar rekomendasi teman untuk akun ";
@@ -168,7 +168,7 @@ namespace UnlinkendIn
 
                         for (int j = 0; j < link[i]; j++)
                         {
-                            textBox2.Text += mutual[i];
+                            textBox2.Text += mutual[i,j];
                         }
                         textBox2.Text += Environment.NewLine;
                         textBox2.Text += Environment.NewLine;
