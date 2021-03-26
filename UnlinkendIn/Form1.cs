@@ -145,26 +145,35 @@ namespace UnlinkendIn
             // menampilkan output fitur rekomendasi teman
             if (comboBoxFitur.SelectedItem.ToString()== "Friend Recommendation")
             {
-                string akun = comboBoxAkunAwal.Text;
-
+                string akun = comboBoxAkunAwal.SelectedItem.ToString();
                 Friend_Recommendation acc = new Friend_Recommendation(akun, numVar, list, dictionary, matrix);
                 acc.process();
-                
-                /*// masih belum terurut dengan jumlah mutual friends terbesar
+                string[] mutual = acc.get_mutual_friends();
+                int[] link = acc.get_total_linked();
+                // masih belum terurut dengan jumlah mutual friends terbesar
+                textBox2.Text += "Daftar rekomendasi teman untuk akun ";
+                textBox2.Text += akun;
+                textBox2.Text += " :";
+                textBox2.Text += Environment.NewLine;
                 for (int i = 0; i < numVar; i++)
                 {
-                    if (acc. > 0)
+                    if (link[i] > 0)
                     {
-                        Console.WriteLine("Nama akun: " + this.list_var[i]);
-                        Console.WriteLine(this.total_linked[i] + " mutual friends: ");
+                        textBox2.Text += "Nama akun: ";
+                        textBox2.Text += list[i];
+                        textBox2.Text += Environment.NewLine;
+                        textBox2.Text += link[i];
+                        textBox2.Text += " mutual friends: ";
+                        textBox2.Text += Environment.NewLine;
 
-                        for (int j = 0; j < this.total_linked[i]; j++)
+                        for (int j = 0; j < link[i]; j++)
                         {
-                            Console.WriteLine(this.mutual_friends[i]);
+                            textBox2.Text += mutual[i];
                         }
-                        Console.WriteLine("\n");
+                        textBox2.Text += Environment.NewLine;
+                        textBox2.Text += Environment.NewLine;
                     }
-                }*/
+                }
             }
 
             // menampilkan output fitur eplorer friends
