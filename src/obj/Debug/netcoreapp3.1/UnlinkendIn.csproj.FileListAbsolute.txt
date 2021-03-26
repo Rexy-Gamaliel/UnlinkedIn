@@ -1,20 +1,20 @@
-C:\Benidictus Galih Mahar Putra\Kuliah\Semester IV\Strategi Algoritma\UnlinkendIn\UnlinkendIn\src\bin\Debug\netcoreapp3.1\UnlinkendIn.exe
-C:\Benidictus Galih Mahar Putra\Kuliah\Semester IV\Strategi Algoritma\UnlinkendIn\UnlinkendIn\src\bin\Debug\netcoreapp3.1\UnlinkendIn.deps.json
-C:\Benidictus Galih Mahar Putra\Kuliah\Semester IV\Strategi Algoritma\UnlinkendIn\UnlinkendIn\src\bin\Debug\netcoreapp3.1\UnlinkendIn.runtimeconfig.json
-C:\Benidictus Galih Mahar Putra\Kuliah\Semester IV\Strategi Algoritma\UnlinkendIn\UnlinkendIn\src\bin\Debug\netcoreapp3.1\UnlinkendIn.runtimeconfig.dev.json
-C:\Benidictus Galih Mahar Putra\Kuliah\Semester IV\Strategi Algoritma\UnlinkendIn\UnlinkendIn\src\bin\Debug\netcoreapp3.1\UnlinkendIn.dll
-C:\Benidictus Galih Mahar Putra\Kuliah\Semester IV\Strategi Algoritma\UnlinkendIn\UnlinkendIn\src\bin\Debug\netcoreapp3.1\UnlinkendIn.pdb
-C:\Benidictus Galih Mahar Putra\Kuliah\Semester IV\Strategi Algoritma\UnlinkendIn\UnlinkendIn\src\bin\Debug\netcoreapp3.1\AutomaticGraphLayout.dll
-C:\Benidictus Galih Mahar Putra\Kuliah\Semester IV\Strategi Algoritma\UnlinkendIn\UnlinkendIn\src\bin\Debug\netcoreapp3.1\AutomaticGraphLayout.Drawing.dll
-C:\Benidictus Galih Mahar Putra\Kuliah\Semester IV\Strategi Algoritma\UnlinkendIn\UnlinkendIn\src\bin\Debug\netcoreapp3.1\Microsoft.Msagl.GraphViewerGdi.dll
-C:\Benidictus Galih Mahar Putra\Kuliah\Semester IV\Strategi Algoritma\UnlinkendIn\UnlinkendIn\src\bin\Debug\netcoreapp3.1\Microsoft.Msagl.WpfGraphControl.dll
-C:\Benidictus Galih Mahar Putra\Kuliah\Semester IV\Strategi Algoritma\UnlinkendIn\UnlinkendIn\src\obj\Debug\netcoreapp3.1\UnlinkendIn.csprojAssemblyReference.cache
-C:\Benidictus Galih Mahar Putra\Kuliah\Semester IV\Strategi Algoritma\UnlinkendIn\UnlinkendIn\src\obj\Debug\netcoreapp3.1\UnlinkendIn.Form1.resources
-C:\Benidictus Galih Mahar Putra\Kuliah\Semester IV\Strategi Algoritma\UnlinkendIn\UnlinkendIn\src\obj\Debug\netcoreapp3.1\UnlinkendIn.csproj.GenerateResource.cache
-C:\Benidictus Galih Mahar Putra\Kuliah\Semester IV\Strategi Algoritma\UnlinkendIn\UnlinkendIn\src\obj\Debug\netcoreapp3.1\UnlinkendIn.AssemblyInfoInputs.cache
-C:\Benidictus Galih Mahar Putra\Kuliah\Semester IV\Strategi Algoritma\UnlinkendIn\UnlinkendIn\src\obj\Debug\netcoreapp3.1\UnlinkendIn.AssemblyInfo.cs
-C:\Benidictus Galih Mahar Putra\Kuliah\Semester IV\Strategi Algoritma\UnlinkendIn\UnlinkendIn\src\obj\Debug\netcoreapp3.1\UnlinkendIn.csproj.CoreCompileInputs.cache
-C:\Benidictus Galih Mahar Putra\Kuliah\Semester IV\Strategi Algoritma\UnlinkendIn\UnlinkendIn\src\obj\Debug\netcoreapp3.1\UnlinkendIn.csproj.CopyComplete
-C:\Benidictus Galih Mahar Putra\Kuliah\Semester IV\Strategi Algoritma\UnlinkendIn\UnlinkendIn\src\obj\Debug\netcoreapp3.1\UnlinkendIn.dll
-C:\Benidictus Galih Mahar Putra\Kuliah\Semester IV\Strategi Algoritma\UnlinkendIn\UnlinkendIn\src\obj\Debug\netcoreapp3.1\UnlinkendIn.pdb
-C:\Benidictus Galih Mahar Putra\Kuliah\Semester IV\Strategi Algoritma\UnlinkendIn\UnlinkendIn\src\obj\Debug\netcoreapp3.1\UnlinkendIn.genruntimeconfig.cache
+C:\Users\OMEN\source\repos\UnlinkendIn\UnlinkendIn\bin\Debug\netcoreapp3.1\UnlinkendIn.exe
+C:\Users\OMEN\source\repos\UnlinkendIn\UnlinkendIn\bin\Debug\netcoreapp3.1\UnlinkendIn.deps.json
+C:\Users\OMEN\source\repos\UnlinkendIn\UnlinkendIn\bin\Debug\netcoreapp3.1\UnlinkendIn.runtimeconfig.json
+C:\Users\OMEN\source\repos\UnlinkendIn\UnlinkendIn\bin\Debug\netcoreapp3.1\UnlinkendIn.runtimeconfig.dev.json
+C:\Users\OMEN\source\repos\UnlinkendIn\UnlinkendIn\bin\Debug\netcoreapp3.1\UnlinkendIn.dll
+C:\Users\OMEN\source\repos\UnlinkendIn\UnlinkendIn\bin\Debug\netcoreapp3.1\UnlinkendIn.pdb
+C:\Users\OMEN\source\repos\UnlinkendIn\UnlinkendIn\bin\Debug\netcoreapp3.1\AutomaticGraphLayout.dll
+C:\Users\OMEN\source\repos\UnlinkendIn\UnlinkendIn\bin\Debug\netcoreapp3.1\AutomaticGraphLayout.Drawing.dll
+C:\Users\OMEN\source\repos\UnlinkendIn\UnlinkendIn\bin\Debug\netcoreapp3.1\Microsoft.Msagl.GraphViewerGdi.dll
+C:\Users\OMEN\source\repos\UnlinkendIn\UnlinkendIn\bin\Debug\netcoreapp3.1\Microsoft.Msagl.WpfGraphControl.dll
+C:\Users\OMEN\source\repos\UnlinkendIn\UnlinkendIn\obj\Debug\netcoreapp3.1\UnlinkendIn.csprojAssemblyReference.cache
+C:\Users\OMEN\source\repos\UnlinkendIn\UnlinkendIn\obj\Debug\netcoreapp3.1\UnlinkendIn.csproj.GenerateResource.cache
+C:\Users\OMEN\source\repos\UnlinkendIn\UnlinkendIn\obj\Debug\netcoreapp3.1\UnlinkendIn.AssemblyInfoInputs.cache
+C:\Users\OMEN\source\repos\UnlinkendIn\UnlinkendIn\obj\Debug\netcoreapp3.1\UnlinkendIn.AssemblyInfo.cs
+C:\Users\OMEN\source\repos\UnlinkendIn\UnlinkendIn\obj\Debug\netcoreapp3.1\UnlinkendIn.csproj.CoreCompileInputs.cache
+C:\Users\OMEN\source\repos\UnlinkendIn\UnlinkendIn\obj\Debug\netcoreapp3.1\UnlinkendIn.csproj.CopyComplete
+C:\Users\OMEN\source\repos\UnlinkendIn\UnlinkendIn\obj\Debug\netcoreapp3.1\UnlinkendIn.dll
+C:\Users\OMEN\source\repos\UnlinkendIn\UnlinkendIn\obj\Debug\netcoreapp3.1\UnlinkendIn.pdb
+C:\Users\OMEN\source\repos\UnlinkendIn\UnlinkendIn\obj\Debug\netcoreapp3.1\UnlinkendIn.genruntimeconfig.cache
+C:\Users\OMEN\source\repos\UnlinkendIn\UnlinkendIn\obj\Debug\netcoreapp3.1\UnlinkendIn.Form1.resources

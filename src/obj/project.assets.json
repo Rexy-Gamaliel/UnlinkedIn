@@ -115,19 +115,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Benidictus\\.nuget\\packages\\": {}
+    "C:\\Users\\OMEN\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Benidictus Galih Mahar Putra\\Kuliah\\Semester IV\\Strategi Algoritma\\UnlinkendIn\\UnlinkendIn\\src\\UnlinkendIn.csproj",
+      "projectUniqueName": "C:\\Users\\OMEN\\source\\repos\\UnlinkendIn\\UnlinkendIn\\UnlinkendIn.csproj",
       "projectName": "UnlinkendIn",
-      "projectPath": "C:\\Benidictus Galih Mahar Putra\\Kuliah\\Semester IV\\Strategi Algoritma\\UnlinkendIn\\UnlinkendIn\\src\\UnlinkendIn.csproj",
-      "packagesPath": "C:\\Users\\Benidictus\\.nuget\\packages\\",
-      "outputPath": "C:\\Benidictus Galih Mahar Putra\\Kuliah\\Semester IV\\Strategi Algoritma\\UnlinkendIn\\UnlinkendIn\\src\\obj\\",
+      "projectPath": "C:\\Users\\OMEN\\source\\repos\\UnlinkendIn\\UnlinkendIn\\UnlinkendIn.csproj",
+      "packagesPath": "C:\\Users\\OMEN\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\OMEN\\source\\repos\\UnlinkendIn\\UnlinkendIn\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Benidictus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\OMEN\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

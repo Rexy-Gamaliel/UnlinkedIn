@@ -58,48 +58,48 @@ namespace UnlinkendIn
             browse.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
             if (browse.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 comboBoxFitur.Enabled = true;
-                label10.Text = System.IO.Path.GetFileName(browse.FileName);
-                ReadFile reader = new ReadFile(browse.FileName);
-                
-                // membaca isi file yang telah dibrowse
-                numVar = reader.GetNumVar();
-                list = reader.GetVarList();
-                dictionary = reader.GetDictionary();
-                matrix = reader.GetMatrix();
-                
-                // menambahkan opsi akun pada choose account dan explore friend with
-                comboBoxAkunAwal.Items.Clear();
-                comboBoxAkunAkhir.Items.Clear();
-                foreach (string a in list)
-                {
-                    comboBoxAkunAwal.Items.Add(a);
-                    comboBoxAkunAkhir.Items.Add(a);
-                }
+            label10.Text = System.IO.Path.GetFileName(browse.FileName);
+            ReadFile reader = new ReadFile(browse.FileName);
 
-                //membuat objek graph
-                graph = new Microsoft.Msagl.Drawing.Graph("graph");
-                
-                //membuat graf dan menghubungkan simpul-simpul yang terkoneksi 
-                for (int i=0; i< numVar; i++)
-                { 
-                    for (int j=0; j<i+1; j++)
+            // membaca isi file yang telah dibrowse
+            numVar = reader.GetNumVar();
+            list = reader.GetVarList();
+            dictionary = reader.GetDictionary();
+            matrix = reader.GetMatrix();
+
+            // menambahkan opsi akun pada choose account dan explore friend with
+            comboBoxAkunAwal.Items.Clear();
+            comboBoxAkunAkhir.Items.Clear();
+            foreach (string a in list)
+            {
+                comboBoxAkunAwal.Items.Add(a);
+                comboBoxAkunAkhir.Items.Add(a);
+            }
+
+            //membuat objek graph
+            graph = new Microsoft.Msagl.Drawing.Graph("graph");
+
+            //membuat graf dan menghubungkan simpul-simpul yang terkoneksi 
+            for (int i = 0; i < numVar; i++)
+            {
+                for (int j = 0; j < i + 1; j++)
+                {
+                    if (matrix[i, j] == true)
                     {
-                        if (matrix[i, j]==true)
-                        {
-                            string node1 = dictionary.FirstOrDefault(x => x.Value == i).Key;
-                            string node2 = dictionary.FirstOrDefault(x => x.Value == j).Key;
-                            graph.AddEdge(node1,node2).Attr.ArrowheadAtTarget = ArrowStyle.None;
-                        }
+                        string node1 = dictionary.FirstOrDefault(x => x.Value == i).Key;
+                        string node2 = dictionary.FirstOrDefault(x => x.Value == j).Key;
+                        graph.AddEdge(node1, node2).Attr.ArrowheadAtTarget = ArrowStyle.None;
                     }
                 }
-                //menampilkan graph pada viewer
-                gViewer.Graph = graph;
+            }
+            //menampilkan graph pada viewer
+            gViewer.Graph = graph;
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)         // memilih fitur yang tersedia
         {
             string fitur = comboBoxFitur.SelectedItem.ToString();
-            
+
             // memilih fitur friend recommendation
             if (fitur == "Friend Recommendation")
             {
@@ -154,9 +154,9 @@ namespace UnlinkendIn
             {
                 graph.FindNode(cek).Attr.FillColor = Microsoft.Msagl.Drawing.Color.White;
             }
-            
+
             // menampilkan output fitur rekomendasi teman
-            if (comboBoxFitur.SelectedItem.ToString()== "Friend Recommendation")
+            if (comboBoxFitur.SelectedItem.ToString() == "Friend Recommendation")
             {
                 string akun = comboBoxAkunAwal.SelectedItem.ToString();
                 Friend_Recommendation acc = new Friend_Recommendation(akun, numVar, list, dictionary, matrix);
@@ -181,7 +181,7 @@ namespace UnlinkendIn
 
                         for (int j = 0; j < link[i]; j++)
                         {
-                            textBox2.Text += mutual[i,j];
+                            textBox2.Text += mutual[i, j];
                             textBox2.Text += Environment.NewLine;
                         }
                         textBox2.Text += Environment.NewLine;
@@ -190,17 +190,17 @@ namespace UnlinkendIn
             }
 
             // menampilkan output fitur eplorer friends
-            else if (comboBoxFitur.SelectedItem.ToString()== "Explorer Friends")
+            else if (comboBoxFitur.SelectedItem.ToString() == "Explorer Friends")
             {
-               // membaca akun awal dan akun tujuan
-               string awal = comboBoxAkunAwal.Text;
-               string akhir = comboBoxAkunAkhir.Text;
-               
+                // membaca akun awal dan akun tujuan
+                string awal = comboBoxAkunAwal.Text;
+                string akhir = comboBoxAkunAkhir.Text;
+
                 // menggunakan algoritma BFS
                 if (radioButtonBFS.Checked == true)
                 {
                     // menjalankan algoritma BFS yang ada pada BFS.cs
-                    BFS friendRecom = new BFS(awal,akhir,numVar,list,dictionary, matrix);
+                    BFS friendRecom = new BFS(awal, akhir, numVar, list, dictionary, matrix);
                     Stack<string> path = new Stack<string>();
                     path = friendRecom.ConstructPath();
                     int degree = path.Count - 1;
@@ -245,7 +245,7 @@ namespace UnlinkendIn
                         {
                             textBox2.Text += "rd";
                         }
-                        else 
+                        else
                         {
                             textBox2.Text += "th";
                         }
@@ -264,7 +264,7 @@ namespace UnlinkendIn
                         textBox2.Text += end;
                         graph.FindNode(end).Attr.FillColor = Microsoft.Msagl.Drawing.Color.MistyRose;
                     }
-                    
+
                 }
 
                 // algoritma DFS
@@ -381,14 +381,14 @@ namespace UnlinkendIn
 
         }
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)    
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             // telah memilih salah satu algoritma agar dapat memilih akun
             comboBoxAkunAwal.Enabled = true;
             comboBoxAkunAkhir.Enabled = true;
         }
 
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)    
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
             // telah memilih salah satu algoritma agar dapat memilih akun
             comboBoxAkunAwal.Enabled = true;
@@ -425,7 +425,7 @@ namespace UnlinkendIn
                     j = i;
                 }
             }
-            if (j!=-1)
+            if (j != -1)
             {
                 edges.ElementAt(j).Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
             }
