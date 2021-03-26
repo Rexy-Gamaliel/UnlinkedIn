@@ -10,24 +10,26 @@ namespace UnlinkendIn
         private string id;                          // node awal / yang ingin dicari\
         private int id_main;
         private Dictionary<string, int> varDictionary;
+        private Queue<string> antrian;              // antrian
         private int total_var;                      // banyak variable 
         private string[] list_var;                  // list of variable [A, B, C, D, E, F]
         private bool[,] graph_link;                 // matriks keterhubungan boolean
         private bool[] link_visited;                // array yang telah dikunjungi
         private int[] total_linked;                 // Banyak nEff matriks mutual friends yang dimiliki 
-        private string[] mutual_friends;            // Matriks nama mutual friends untuk setiap final node
+        private string[,] mutual_friends;            // Matriks nama mutual friends untuk setiap final node
 
         public Friend_Recommendation(string id, int total_var,
-            string[] list_var, Dictionary<string, int> varDictionary,
+            string[] list_var, Dictionary<string, int> dictionary_f,
             bool[,] graph_link)
         {
 
             this.id = id;
+            this.id_main = getIdx(id);
             this.total_var = total_var;
             this.list_var = list_var;
             this.graph_link = graph_link;
-            this.varDictionary = varDictionary;
-            this.id_main = this.getIdx(id);
+            this.varDictionary = dictionary_f;
+            this.antrian = new Queue<string>();
 
             /* assign array link_visited dengan false */
             this.link_visited = new bool[this.total_var];
@@ -44,10 +46,14 @@ namespace UnlinkendIn
             }
 
             /* assign array indeks mutual friends dengan nilai -1 */
-            this.mutual_friends = new string[this.total_var];
+            this.mutual_friends = new string[this.total_var, this.total_var];
             for (int i = 0; i < total_var; i++)
             {
-                this.mutual_friends[i] = "";
+                for (int j = 0; j < total_var; j++)
+                {
+                    this.mutual_friends[i,j] = "";
+                }
+                    
             }
         }
 
@@ -57,50 +63,54 @@ namespace UnlinkendIn
          * string nama mutual friends */
         public void process()
         {
+            /* inisialisasi simpul awal dengan nilai true */
+            this.link_visited[this.id_main] = true;
+
+            /* memasukan simpul awal ke dalam antrian */
+            this.antrian.Enqueue(this.list_var[this.id_main]);
+
+            /* memasukan simpul - simpul tetangga ke dalam antrian
+             * dan set nilai boolean kunjunginya menjadi true */
             for (int i = 0; i < this.total_var; i++)
             {
-                // graph terhubung jarak pertama
-                if (this.graph_link[this.id_main,i])
+                if (this.graph_link[this.id_main, i])
                 {
-                    for (int j = 0; j < this.total_var; j++)
+                    this.antrian.Enqueue(this.list_var[i]);
+                    this.link_visited[i] = true;
+                }
+            }
+
+            /* mengeluarkan simpul awal dari antrian */
+            this.antrian.Dequeue();
+
+            /* Mengakses antrian satu per satu */
+            while (this.antrian.Count > 0)
+            {
+                /* graf level kedua untuk mencari final node dan mutual friends */
+                for (int i = 0; i < this.total_var; i++)
+                {
+                    /* jika ada keterhubungan antara antrian pertama dengan pencarian node */
+                    if (this.graph_link[this.getIdx(this.antrian.Peek()), i])
                     {
-                        // graph terhubung jarak kedua
-                        if (this.graph_link[i,j])
+                        /* jika node belum dikunjungi */
+                        if (!this.link_visited[i])
                         {
-                            // node apakah sudah dikunjungi
-                            if (!this.link_visited[j])
-                            {
-                                this.link_visited[j] = true;
-                                this.mutual_friends[total_linked[j]] = this.list_var[j];
-                                this.total_linked[j]++;
-                            }
+                            /* assign nilai string ke dalam matriks mutual friends */
+                            this.mutual_friends[i, total_linked[i]] = this.antrian.Peek();
+                            this.link_visited[i] = true;            /* assign node sudah dikunjungi  */
+                            this.total_linked[i]++;                 /* nEff baris matriks bertambah  */
                         }
                     }
                 }
-
+                
+                this.antrian.Dequeue();
             }
 
-
-            /* arr_dikunjungi[find_friends] = true;
-
-            for (int i = 0; i < length; i++)    // length = panjang baris efektif yang ingin dicari
-            {
-                for (int j = 0; j < length; j++)// length = panjang baris efektif dari daun pertama
-                {
-                    // node belum dikunjungi dan tidak berjarak satu dengan node initial
-                    // is_index_in_array mirip dengan IsStringInArray tapi bingung containernya bentuk nya seperti apa
-                    if (!(arr_dikunjungi[j] || is_index_in_array(arr_int[i], j)))
-                    {
-                        mutual_friends[j][jumlah_keterhubungan[j]] = arr_int[i];
-                        jumlah_keterhubungan[j]++;
-                    }
-                }                
-            } */
         }
 
         private int getIdx(string node)
         {
-            return this.varDictionary[node];
+            return varDictionary[node];
         }
 
         public int[] get_total_linked()
@@ -108,9 +118,10 @@ namespace UnlinkendIn
             return this.total_linked;
         }
 
-        public string[] get_mutual_friends()
+        public string[,] get_mutual_friends()
         {
             return this.mutual_friends;
         }
+
     }
 }
