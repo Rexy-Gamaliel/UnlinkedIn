@@ -298,7 +298,7 @@ namespace UnlinkendIn
                     {
                         blackLine();
                         string[] pathArray = convertStack(path);
-                        for (int currNode = 0; currNode < pathArray.Length - 2; currNode++)
+                        for (int currNode = 0; currNode < pathArray.Length - 1; currNode++)
                         {
                             colorLine(pathArray[currNode], pathArray[currNode + 1]);
                         }
