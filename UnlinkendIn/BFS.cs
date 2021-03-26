@@ -52,10 +52,8 @@ namespace UnlinkendIn
 
             while (varQueue.Count > 0)
             {
-                // Console.Out.WriteLine("Iteration " + it + " : ");
                 // indeks node yang sedang dievaluasi
                 currentIdx = getIdx(varQueue.Dequeue());
-                // Console.Out.WriteLine("Current Node: " + getName(currentIdx));
 
                 // jika node tujuan ditemukan
                 if (currentIdx == dIdx)
@@ -73,18 +71,8 @@ namespace UnlinkendIn
                         precNode.Add(getName(othersIdx), getName(currentIdx));
                     }
                 }
-                // it++;
             }
 
-            // construct path
-            // testing
-            // foreach (KeyValuePair<string, string> item in precNode)
-            // {
-            //     Console.Out.WriteLine(item.Key + " : " + item.Value);
-            // }
-            //
-
-            // backtracking
             if (precNode.ContainsKey(dNode))
             {
                 string tempStr = dNode;
@@ -98,7 +86,6 @@ namespace UnlinkendIn
             }
             else
             {
-                //path.Push("NULL");
                 return path;
             }
         }

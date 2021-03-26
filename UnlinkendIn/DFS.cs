@@ -7,13 +7,13 @@ namespace UnlinkendIn
     public class DFS
     {
         //atribut
-        private int numVar; // banyak simpul
-        private string[] varList; // list simpul
+        private int numVar;                                     // banyak simpul
+        private string[] varList;                               // list simpul
         private Dictionary<string, int> varDictionary;
         private Stack<string> varStack;
-        private bool[,] matriks; // matriks keterhubungan
-        private string awal; // indeks simpul awal
-        private string akhir; // indeks simpul akhir
+        private bool[,] matriks;                                // matriks keterhubungan
+        private string awal;                                    // simpul awal
+        private string akhir;                                   // simpul akhir
         private bool[] visited;
 
 
@@ -69,6 +69,7 @@ namespace UnlinkendIn
                 {
                     int othersIdx = 0;
                     bool found = false;
+                    // memprioritaskan berdasarkan abjad
                     while (othersIdx < numVar && !found)
                     {
                         if (matriks[currentIdx, othersIdx] && !visited[othersIdx])
@@ -85,6 +86,7 @@ namespace UnlinkendIn
                 }
             }
 
+            // menyimpan jalur ke dalam stack
             if (precNode.ContainsKey(akhir))
             {
                 string tempStr = akhir;
