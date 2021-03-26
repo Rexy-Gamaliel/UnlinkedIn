@@ -61,7 +61,7 @@ namespace UnlinkendIn
 
             numVar = count;
             // selesai mengakuisisi setiap variabel
-            Console.WriteLine("> Test 1");
+            //Console.WriteLine("> Test 1");
             variables = new string[numVar];
             for (int i = 0; i < numVar; i++)
             {
