@@ -80,22 +80,6 @@ namespace UnlinkendIn
 
             }
 
-
-            /* arr_dikunjungi[find_friends] = true;
-
-            for (int i = 0; i < length; i++)    // length = panjang baris efektif yang ingin dicari
-            {
-                for (int j = 0; j < length; j++)// length = panjang baris efektif dari daun pertama
-                {
-                    // node belum dikunjungi dan tidak berjarak satu dengan node initial
-                    // is_index_in_array mirip dengan IsStringInArray tapi bingung containernya bentuk nya seperti apa
-                    if (!(arr_dikunjungi[j] || is_index_in_array(arr_int[i], j)))
-                    {
-                        mutual_friends[j][jumlah_keterhubungan[j]] = arr_int[i];
-                        jumlah_keterhubungan[j]++;
-                    }
-                }                
-            } */
         }
 
         /* Menampilkan mutual friends dan jumlah mutual friends ke layar 
@@ -122,5 +106,16 @@ namespace UnlinkendIn
         {
             return varDictionary[node];
         }
+
+        public int[] get_total_linked()
+        {
+            return this.total_linked;
+        }
+
+        public string[] get_mutual_friends()
+        {
+            return this.mutual_friends;
+        }
+
     }
 }
