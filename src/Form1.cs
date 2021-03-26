@@ -28,8 +28,9 @@ namespace UnlinkendIn
         private bool[,] matrix;
         private Graph graph;                    // untuk visualisasi
 
-        public string[] convertStack(Stack<string> S)
+        public string[] convertStack(Stack<string> convert)
         {
+            var S = new Stack<string>(new Stack<string>(convert));
             string[] result = new string[S.Count];
             int i = 0;
             while (S.Count > 0)
@@ -145,7 +146,7 @@ namespace UnlinkendIn
         {
             // menampilkan text box sebagai tempat keluaran program
             textBox2.Visible = true;
-            vScrollBar1.Visible = true;
+            textBox2.ScrollBars = ScrollBars.Both;
             textBox2.Clear();
 
             // membuat simpul berwarna putih kembali
@@ -181,8 +182,8 @@ namespace UnlinkendIn
                         for (int j = 0; j < link[i]; j++)
                         {
                             textBox2.Text += mutual[i,j];
+                            textBox2.Text += Environment.NewLine;
                         }
-                        textBox2.Text += Environment.NewLine;
                         textBox2.Text += Environment.NewLine;
                     }
                 }
@@ -202,8 +203,9 @@ namespace UnlinkendIn
                     BFS friendRecom = new BFS(awal,akhir,numVar,list,dictionary, matrix);
                     Stack<string> path = new Stack<string>();
                     path = friendRecom.ConstructPath();
-                    int degree = path.Count - 2;
-                    
+                    int degree = path.Count - 1;
+                    whiteLine();
+
                     // menampilkan output
                     // tidak ada jalur koneksi yang tersedia
                     if (path.Count == 0)
@@ -218,10 +220,18 @@ namespace UnlinkendIn
                         textBox2.Text += "Kedua akun sudah terkoneksi/terhubung.";
                         graph.FindNode(awal).Attr.FillColor = Microsoft.Msagl.Drawing.Color.MistyRose;
                         graph.FindNode(akhir).Attr.FillColor = Microsoft.Msagl.Drawing.Color.MistyRose;
+                        colorLine(awal, akhir);
                     }
                     // selain kondisi di atas
                     else
                     {
+                        blackLine();
+                        string[] pathArray = convertStack(path);
+                        for (int currNode = 0; currNode < pathArray.Length - 1; currNode++)
+                        {
+                            colorLine(pathArray[currNode], pathArray[currNode + 1]);
+                        }
+
                         textBox2.Text += degree;
                         if (degree == 1)
                         {
@@ -243,6 +253,7 @@ namespace UnlinkendIn
                         textBox2.Text += Environment.NewLine;
                         textBox2.Text += "Alternatif Jalur yang Tersedia";
                         textBox2.Text += Environment.NewLine;
+
                         while (path.Count > 1)
                         {
                             string curr = path.Pop();
@@ -264,6 +275,7 @@ namespace UnlinkendIn
                     Stack<string> path = new Stack<string>();
                     path = friendRecom.ConstructPath();
                     int degree = path.Count - 2;
+                    whiteLine();
 
                     // menampilkan output
                     // tidak ada jalur koneksi yang tersedia
@@ -279,10 +291,17 @@ namespace UnlinkendIn
                         textBox2.Text += "Kedua akun sudah terkoneksi/terhubung.";
                         graph.FindNode(awal).Attr.FillColor = Microsoft.Msagl.Drawing.Color.MistyRose;
                         graph.FindNode(akhir).Attr.FillColor = Microsoft.Msagl.Drawing.Color.MistyRose;
+                        colorLine(awal, akhir);
                     }
                     // selain kondisi di atas
                     else
                     {
+                        blackLine();
+                        string[] pathArray = convertStack(path);
+                        for (int currNode = 0; currNode < pathArray.Length - 2; currNode++)
+                        {
+                            colorLine(pathArray[currNode], pathArray[currNode + 1]);
+                        }
                         textBox2.Text += degree;
                         if (degree == 1)
                         {
@@ -354,7 +373,6 @@ namespace UnlinkendIn
             comboBoxFitur.SelectedIndex = 0;
             label10.Text = "";
             textBox2.Visible = false;
-            vScrollBar1.Visible = false;
             comboBoxFitur.Enabled = false;
             //create a graph object 
             Microsoft.Msagl.Drawing.Graph delgraph = new Microsoft.Msagl.Drawing.Graph("graph");
@@ -375,6 +393,47 @@ namespace UnlinkendIn
             // telah memilih salah satu algoritma agar dapat memilih akun
             comboBoxAkunAwal.Enabled = true;
             comboBoxAkunAkhir.Enabled = true;
+        }
+
+        private void whiteLine()
+        {
+            Microsoft.Msagl.Drawing.Edge[] edges = graph.Edges.ToArray();
+            for (int i = 0; i < edges.Length; i++)
+            {
+                edges.ElementAt(i).Attr.Color = Microsoft.Msagl.Drawing.Color.White;
+            }
+        }
+
+        private void blackLine()
+        {
+            Microsoft.Msagl.Drawing.Edge[] edges = graph.Edges.ToArray();
+            for (int i = 0; i < edges.Length; i++)
+            {
+                edges.ElementAt(i).Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
+            }
+        }
+
+        private void colorLine(string node1, string node2)
+        {
+            Microsoft.Msagl.Drawing.Edge[] edges = graph.Edges.ToArray();
+            int i;
+            int j = -1;
+            for (i = 0; i < edges.Length; i++)
+            {
+                if (((edges[i].Source.Equals(node1)) && (edges[i].Target.Equals(node2))) || ((edges[i].Source.Equals(node2)) && (edges[i].Target.Equals(node1))))
+                {
+                    j = i;
+                }
+            }
+            if (j!=-1)
+            {
+                edges.ElementAt(j).Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
+            }
+            else
+            {
+                edges.ElementAt(j).Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
+            }
+
         }
     }
 }

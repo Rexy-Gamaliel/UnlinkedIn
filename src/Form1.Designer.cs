@@ -49,10 +49,9 @@ namespace UnlinkendIn
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.comboBoxFitur = new System.Windows.Forms.ComboBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
             this.gViewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
             this.buttonClear = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // buttonBrowse
@@ -243,26 +242,6 @@ namespace UnlinkendIn
             this.comboBoxFitur.TabIndex = 19;
             this.comboBoxFitur.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
             // 
-            // textBox2
-            // 
-            this.textBox2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Location = new System.Drawing.Point(44, 798);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(730, 225);
-            this.textBox2.TabIndex = 20;
-            this.textBox2.Visible = false;
-            // 
-            // vScrollBar1
-            // 
-            this.vScrollBar1.Location = new System.Drawing.Point(748, 798);
-            this.vScrollBar1.Name = "vScrollBar1";
-            this.vScrollBar1.Size = new System.Drawing.Size(26, 245);
-            this.vScrollBar1.TabIndex = 21;
-            this.vScrollBar1.Visible = false;
-            // 
             // gViewer
             // 
             this.gViewer.ArrowheadLength = 10D;
@@ -314,15 +293,26 @@ namespace UnlinkendIn
             this.buttonClear.UseVisualStyleBackColor = false;
             this.buttonClear.Click += new System.EventHandler(this.button3_Click);
             // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox2.Location = new System.Drawing.Point(44, 804);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(730, 172);
+            this.textBox2.TabIndex = 20;
+            this.textBox2.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(817, 1053);
+            this.ClientSize = new System.Drawing.Size(817, 1021);
+            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.buttonClear);
             this.Controls.Add(this.gViewer);
-            this.Controls.Add(this.vScrollBar1);
-            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.comboBoxFitur);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
@@ -371,10 +361,9 @@ namespace UnlinkendIn
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox comboBoxFitur;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.VScrollBar vScrollBar1;
         private Microsoft.Msagl.GraphViewerGdi.GViewer gViewer;
         private System.Windows.Forms.Button buttonClear;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
 

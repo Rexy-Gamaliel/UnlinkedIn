@@ -98,7 +98,6 @@ namespace UnlinkendIn
                         {
                             /* assign nilai string ke dalam matriks mutual friends */
                             this.mutual_friends[i, total_linked[i]] = this.antrian.Peek();
-                            this.link_visited[i] = true;            /* assign node sudah dikunjungi  */
                             this.total_linked[i]++;                 /* nEff baris matriks bertambah  */
                         }
                     }
