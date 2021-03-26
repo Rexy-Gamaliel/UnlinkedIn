@@ -251,7 +251,7 @@ namespace UnlinkendIn
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(730, 245);
+            this.textBox2.Size = new System.Drawing.Size(730, 225);
             this.textBox2.TabIndex = 20;
             this.textBox2.Visible = false;
             // 

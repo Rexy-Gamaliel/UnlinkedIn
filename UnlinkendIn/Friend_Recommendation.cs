@@ -18,16 +18,16 @@ namespace UnlinkendIn
         private string[] mutual_friends;            // Matriks nama mutual friends untuk setiap final node
 
         public Friend_Recommendation(string id, int total_var,
-            string[] list_var, Dictionary<string, int> dictionary_f,
+            string[] list_var, Dictionary<string, int> varDictionary,
             bool[,] graph_link)
         {
 
             this.id = id;
-            this.id_main = getIdx(id);
             this.total_var = total_var;
             this.list_var = list_var;
             this.graph_link = graph_link;
-            this.varDictionary = dictionary_f;
+            this.varDictionary = varDictionary;
+            this.id_main = this.getIdx(id);
 
             /* assign array link_visited dengan false */
             this.link_visited = new bool[this.total_var];
@@ -80,31 +80,27 @@ namespace UnlinkendIn
 
             }
 
-        }
 
-        /* Menampilkan mutual friends dan jumlah mutual friends ke layar 
-         * dari array idx mutual_friends, list_var dan total_linked */
-        public void display()
-        {
-            // masih belum terurut dengan jumlah mutual friends terbesar
-            for (int i = 0; i < this.total_var; i++)
+            /* arr_dikunjungi[find_friends] = true;
+
+            for (int i = 0; i < length; i++)    // length = panjang baris efektif yang ingin dicari
             {
-                if (this.total_linked[i] > 0)
+                for (int j = 0; j < length; j++)// length = panjang baris efektif dari daun pertama
                 {
-                    Console.WriteLine("Nama akun: " + this.list_var[i]);
-                    Console.WriteLine(this.total_linked[i] + " mutual friends: ");
-
-                    for (int j = 0; j < this.total_linked[i]; j++)
+                    // node belum dikunjungi dan tidak berjarak satu dengan node initial
+                    // is_index_in_array mirip dengan IsStringInArray tapi bingung containernya bentuk nya seperti apa
+                    if (!(arr_dikunjungi[j] || is_index_in_array(arr_int[i], j)))
                     {
-                        Console.WriteLine(this.mutual_friends[i]);
+                        mutual_friends[j][jumlah_keterhubungan[j]] = arr_int[i];
+                        jumlah_keterhubungan[j]++;
                     }
-                    Console.WriteLine("\n");
-                }
-            }
+                }                
+            } */
         }
+
         private int getIdx(string node)
         {
-            return varDictionary[node];
+            return this.varDictionary[node];
         }
 
         public int[] get_total_linked()
@@ -116,6 +112,5 @@ namespace UnlinkendIn
         {
             return this.mutual_friends;
         }
-
     }
 }
