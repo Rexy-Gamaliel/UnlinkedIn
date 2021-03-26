@@ -28,6 +28,18 @@ namespace UnlinkendIn
         private bool[,] matrix;
         private Graph graph;                    // untuk visualisasi
 
+        public string[] convertStack(Stack<string> S)
+        {
+            string[] result = new string[S.Count];
+            int i = 0;
+            while (S.Count > 0)
+            {
+                result[i] = S.Pop();
+                i++;
+            }
+            return result;
+        }
+
         public Form1()                          // menampilkan layout utama program
         {
             InitializeComponent();
